@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <style media="screen">
+            fieldset {
+                width: 300px;
+            }
+        </style>
+        <meta charset="utf-8">
+        <title>Welcome Page</title>
+    </head>
+    <body>
+        <h1>Welcome!!!</h1>
+
+        <form action="/process" method="post">
+            Your Name: <input type="text" name="name" placeholder="Your name:"><br>
+            Your Email: <input type="text" name="email" placeholder="Your email:"><br>
+            <input type="hidden" name="secret" value="I am a secret">
+            <input type="submit" value="Sign Up!">
+        </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+        <p>{{session.test}}</p>
+
+        <p>{{test2}}</p>
+
+        <table>
+    <tr>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Action</td>
+    </tr>
+    <tr>
+        <td>Dojo t-shirt</td>
+        <td>$15.99</td>
+        <td><a href="/buy/1">Buy</a></td>
+    </tr>
+    <tr>
+        <td>Dojo Hat</td>
+        <td>$11.99</td>
+        <td><a href="/buy/2">Buy</a></td>
+    </tr>
+    <tr>
+        <td>Dojo Algorithm Book</td>
+        <td>$34.99</td>
+        <td><a href="/buy/3">Buy</a></td>
+    </tr>
+</table>
+
+    </body>
+</html>
