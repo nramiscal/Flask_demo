@@ -1,16 +1,22 @@
 from flask import Flask, render_template, request, redirect, session, flash
 import re
+from mysqlconnection import connectToMySQL
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 app = Flask(__name__)
-app.secret_key = "akjshdkjashdkjhasd"
+app.secret_key = "this_is_secret"
 
 @app.route("/")
 def index():
     # return "<h1>Hello World!</h1>"
     session["test"] = "Test"
-    return render_template("index.html", test2="another_test")
+
+    mysql = connectToMySQL('friendsdb')
+    all_friends = mysql.query_db("SELECT * FROM friends;")
+    print(all_friends)
+
+    return render_template("index.html", test2="another_test", all_friends=all_friends)
 
 
 @app.route("/success")

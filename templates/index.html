@@ -5,12 +5,55 @@
             fieldset {
                 width: 300px;
             }
+
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
         </style>
         <meta charset="utf-8">
         <title>Welcome Page</title>
     </head>
     <body>
         <h1>Welcome!!!</h1>
+
+        <!-- <p>{{ all_friends }}</p> -->
+
+        <!-- {% for friend in all_friends %}
+            <p>{{friend.first_name}}</p>
+
+        {% endfor %} -->
+
+        <table>
+          <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Occupation</th>
+          </tr>
+          {% for friend in all_friends %}
+              <tr>
+                <td>{{friend.id}}</td>
+                <td>{{friend.first_name}}</td>
+                <td>{{friend.last_name}}</td>
+                <td>{{friend.occupation}}</td>
+              </tr>
+          {% endfor %}
+
+        </table>
+
+
 
         <form action="/process" method="post">
             Your Name: <input type="text" name="name" placeholder="Your name:"><br>
